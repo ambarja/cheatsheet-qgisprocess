@@ -24,4 +24,3 @@ The software used for the creation of the logo was inkscape and for the cheat sh
     <td><h4><b>📥<a href='https://github.com/ambarja/cheatsheet-qgisprocess/raw/main/cheatsheet/es/qgisprocess_es.pdf'>PDF Download</a></b></h3></td>
   </tr>
 </table>
-

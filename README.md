@@ -6,9 +6,9 @@ The software used for the creation of the logo was inkscape and for the cheat sh
 <br>
 
 <table>
-  <tr>
-   <td><img src='cheatsheet/en/qgisprocess_en.png' width='330px'></td>
-   <td><img src='cheatsheet/spa/qgisprocess_spa.png' width='330px'></td>
+  <tr align='center'>
+   <td><img src='cheatsheet/en/qgisprocess_en.png' width='500px'></td>
+   <td><img src='cheatsheet/spa/qgisprocess_spa.png' width='500px'></td>
 
   </tr>
   <tr align='center'>
@@ -16,8 +16,8 @@ The software used for the creation of the logo was inkscape and for the cheat sh
     <td><h3><b>Spanish</b></h3></td>
   </tr>
   <tr align='center'>
-    <td><h3><b>📥<a href=''>PDF Download</a></b></h3></td>
-    <td><h3><b>📥<a href=''>PDF Download</a></b></h3></td>
+    <td><h4><b>📥<a href='https://github.com/ambarja/cheatsheet-qgisprocess/raw/main/cheatsheet/en/qgisprocess_en.pdf'>PDF Download</a></b></h3></td>
+    <td><h4><b>📥<a href='https://github.com/ambarja/cheatsheet-qgisprocess/raw/main/cheatsheet/en/qgisprocess_spa.pdf'>PDF Download</a></b></h3></td>
   </tr>
 </table>
 

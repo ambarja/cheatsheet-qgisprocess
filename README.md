@@ -1,5 +1,9 @@
 # **Cheatsheet for qgisprocess in R** <img src="logo/qgisprocess.png" align="right" hspace="10" vspace="0" width="20%"/>
 
+If you have contribute, please, click on **Contribute** 👇: <br>
+[![](https://img.shields.io/badge/discussion-contribute-brightgreen?style=for-the-badge&logo=github)](https://github.com/ambarja/cheatsheet-qgisprocess/discussions/new/choose)
+
+
 This repository stores in pdf and png format a cheat sheet and logo of the qgisprocess package in R. 
 The colours considered in these were taken from [the official QGIS website](https://qgis.org/en/site/getinvolved/styleguide.html).
 The software used for the creation of the logo was inkscape and for the cheat sheet was an official power point template shared by the posit cheat sheet repository.

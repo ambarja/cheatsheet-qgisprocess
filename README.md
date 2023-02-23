@@ -6,10 +6,3 @@ The software used for the creation of the logo was inkscape and for the cheat sh
 
 
 
-
-
-# Colours
- * #8DAD24 green
- * #1C2028 blacklight
- * #F08C36 orangelight
- * #F1E962 yellow

@@ -1,4 +1,4 @@
-# **Cheatsheet for qgisprocess in R**
+# **Cheatsheet for qgisprocess in R** <img src="logo/qgisprocess.png" align="right" hspace="10" vspace="0" width="20%"/>
 
 This repository stores in pdf and png format a cheat sheet and logo of the qgisprocess package in R. 
 The colours considered in these were taken from [the official QGIS website](https://qgis.org/en/site/getinvolved/styleguide.html).

@@ -1,7 +1,7 @@
 # **Cheatsheet for qgisprocess in R** <img src="logo/qgisprocess.png" align="right" hspace="10" vspace="0" width="20%"/>
 
 If you have contribute, please, click on **Contribute** 👇: <br>
-[![](https://img.shields.io/badge/discussion-contribute-brightgreen?style=for-the-badge&logo=github)](https://github.com/ambarja/cheatsheet-qgisprocess/discussions/new/choose)
+[![](https://img.shields.io/badge/issue-contribute-brightgreen?style=for-the-badge&logo=github)](https://github.com/ambarja/cheatsheet-qgisprocess/issues/new)
 
 
 This repository stores in pdf and png format a cheat sheet and logo of the qgisprocess package in R. 

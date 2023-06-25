@@ -73,7 +73,7 @@
 \end{flushleft}
 
 \begin{tikzpicture}[remember picture, overlay]
-  \node[anchor=north east, yshift=-12pt, xshift=-12pt] at (current page.north east) {\includegraphics[width=0.12\textwidth]{logo/qgisprocess.png}};
+  \node[anchor=north east, yshift=-12pt, xshift=-12pt] at (current page.north east) {\includegraphics[width=0.12\textwidth]{qgisprocess.png}};
 \end{tikzpicture}
 
 \begin{multicols*}{3}
@@ -99,14 +99,14 @@
 \begin{minipage}{\linewidth}
   \vspace{-5pt}
    \textbf{\fontsize{44}{44}\selectfont \textbf{Mission}}\vspace{8pt}\\ 
-  The main objective is to provide the R interface for the most popular open-source desktop GIS program like QGIS. This package is a re-implementation of the functionality provided by the archived \textbf{RQGIS} package, which was partially revived in the \textbf{RQGIS3} package.
+   The goal of qgisprocess is to provide an R interface to the geoprocessing algorithms of QGIS, a popular and open source desktop geographic information system (GIS) program. This package is a re-implementation of the functionality provided by the archived \textbf{RQGIS} package, which was partially revived in the \textbf{RQGIS3} package.
 \end{minipage}
 
 % Features %
 \begin{minipage}{\linewidth}
-  \vspace{12pt}
+  \vspace{1pt}
    \textbf{\fontsize{20}{5}\selectfont \textbf{Features}}\vspace{8pt}\\ 
-  This package makes it easier to use native functions from QGIS and some from GDAL, GRASS and many others (like SAGA).
+  This package makes it easier to use native processing algorithms and some from GDAL, GRASS and many others (like SAGA).
 
 \begin{center}
 \setlength{\arrayrulewidth}{0.001pt} 
@@ -252,11 +252,11 @@ qgisprocess give us new functionalities of output for vector, raster and other f
 \vspace{-5pt}
 \textbf{\fontsize{44}{44}\selectfont \textbf{Pipe integration}}\vspace{-13pt}
 \vspace{13pt}
-\begin{lstlisting}[style=Rstyle]
- > qgisprocess also provides
- > qgis_run_algorithm_p() 
+\begin{lstlisting}
+qgisprocess also provides 
+qgis_run_algorithm_p() that works
 \end{lstlisting}
-that works better in pipelines.
+better in pipelines.
 \end{minipage}
 
 \begin{lstlisting}[style=Rstyle]
@@ -272,14 +272,14 @@ that works better in pipelines.
     st_as_sf( ) |>
     plot( ) 
 
-qgis_fun(...)
+ > qgis_fun(...)
 \end{lstlisting}
 
 % Workflow %
 \begin{minipage}{\linewidth}
   \vspace{12pt}
    \textbf{\fontsize{20}{5}\selectfont \textbf{Workflow}}\vspace{8pt}\\ 
-  This package makes it easier to use native functions from QGIS and some from GDAL, GRASS and many others (like SAGA).
+    Attached are 2 example workflows in vector and raster data.
 \end{minipage}
 
 \begin{tikzpicture}
@@ -288,7 +288,7 @@ qgis_fun(...)
 \begin{lstlisting}[breaklines=true,style=Rstyle]
 > library(sf)
 > grid_fun <- qgis_function('native:creategrid')
-  grid_fun(
+> grid_fun(
     TYPE = 4,
     EXTENT = c('409967, 411658, 5083354, 5084777'),
     HSPACING = 400,

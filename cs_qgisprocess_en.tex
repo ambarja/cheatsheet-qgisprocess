@@ -56,7 +56,7 @@
     \begin{tikzpicture}[remember picture,overlay]
       \node[fill=mycolor, text=white, minimum width=\paperwidth, minimum height=0.7cm, anchor=south] at (current page.south) {};
       \node[anchor=east, text=white, yshift=0.35cm, xshift=-14.5cm] at (current page.south) {\textcolor{white}{\textbf{Created by Antony Barja}}};
-      \node[anchor=center, text=white, yshift=0.35cm, xshift= 14.5cm] at (current page.south) {\textcolor{white}{\textbf{Revised by Floris Vanderhaeghe and updated: 23/06/2023}}};
+      \node[anchor=center, text=white, yshift=0.35cm, xshift= 13.5cm] at (current page.south) {\textcolor{white}{\textbf{Revised by Floris Vanderhaeghe and updated: 23/06/2023}}};
     \end{tikzpicture}
   }
   \renewcommand{\footrulewidth}{0pt}
@@ -255,11 +255,12 @@ qgisprocess give us new functionalities of output for vector, raster and other f
 \begin{lstlisting}
 qgisprocess also provides 
 qgis_run_algorithm_p() that works
-\end{lstlisting}
 better in pipelines.
+\end{lstlisting}
 \end{minipage}
 
 \begin{lstlisting}[style=Rstyle]
+ # Buffer processing
  > library(sf)
  > system.file(
     'longlake/longlake_depth.gpkg',
@@ -268,24 +269,21 @@ better in pipelines.
   qgis_run_algorithm_p(
     algorithm = 'native:buffer',
     DISTANCE = 100
-    ) |> 
-    st_as_sf( ) |>
-    plot( ) 
-
- > qgis_fun(...)
+    ) |> st_as_sf() |>
+    plot() 
 \end{lstlisting}
 
 % Workflow %
 \begin{minipage}{\linewidth}
   \vspace{12pt}
-   \textbf{\fontsize{20}{5}\selectfont \textbf{Workflow}}\vspace{8pt}\\ 
-    Attached are 2 example workflows in vector and raster data.
+   \textbf{\fontsize{44}{44}\selectfont \textbf{Workflow}}\vspace{8pt}\\ 
 \end{minipage}
 
 \begin{tikzpicture}
   \node[mybox,text width=11.5cm] (box) 
   {\\
 \begin{lstlisting}[breaklines=true,style=Rstyle]
+# Hexagrid of 400x400
 > library(sf)
 > grid_fun <- qgis_function('native:creategrid')
 > grid_fun(
@@ -295,10 +293,10 @@ better in pipelines.
     VSPACING = 400,
     CRS = 'EPSG:26920',
     OUTPUT = 'grid'
-    ) |>
-   st_as_sf() |> 
-   select(id) |>
-   plot()
+    ) |> 
+    st_as_sf() |> 
+    select(id) |>
+    plot()
 \end{lstlisting}
   };
 \node[fancytitle, right=0pt, yshift=6pt] at (box.north west) {Vector data};
@@ -307,6 +305,7 @@ better in pipelines.
 \node[mybox,text width=11.5cm] (box) 
 {
 \begin{lstlisting}[breaklines=true,style=Rstyle]
+# TWI processing
  > library(stars)
  > dem <- read_stars(
     system.file(

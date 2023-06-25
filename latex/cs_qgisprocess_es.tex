@@ -1,0 +1,329 @@
+\documentclass{article}
+\renewcommand{\normalsize}{\fontsize{12}{13}\selectfont} 
+\usepackage[landscape]{geometry}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\lstset{inputencoding=utf8/utf8}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{adjustbox}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\usetikzlibrary {shapes.callouts}
+\advance\textheight4in
+\advance\textwidth3in
+\advance\oddsidemargin-1.5in
+\advance\evensidemargin-1.5in
+\parindent0pt
+\parskip2pt
+\newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
+
+% Setup the size of paper % 
+\geometry{
+  paperwidth=850pt,
+  paperheight=1100pt,
+  margin=25pt
+}
+
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  showstringspaces=false
+}
+
+% Setup the font with style of R %
+\lstdefinestyle{Rstyle}{
+    inputencoding=utf8/utf8,
+    language=R,
+    basicstyle=\ttfamily\fontsize{13}{13}\selectfont,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    breaklines=true,
+    morekeywords={function,st,github,qgisprocess,sf,fun,run,qgis,tmp,raster,base,algorithms,p,argument,specs,providers,algorithm},
+    extendedchars=true
+}
+\definecolor{mycolor}{HTML}{589632}
+
+% Setup the style of paper %
+\fancypagestyle{footerstyle}{
+  \fancyfoot[C]{%
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[fill=mycolor, text=white, minimum width=\paperwidth, minimum height=0.7cm, anchor=south] at (current page.south) {};
+      \node[anchor=east, text=white, yshift=0.35cm, xshift=-14.5cm] at (current page.south) {\textcolor{white}{\textbf{Creado por Antony Barja}}};
+      \node[anchor=center, text=white, yshift=0.35cm, xshift= 13.5cm] at (current page.south) {\textcolor{white}{\textbf{Revisado por Floris Vanderhaeghe and actualizado: 23/06/2023}}};
+    \end{tikzpicture}
+  }
+  \renewcommand{\footrulewidth}{0pt}
+  \setlength{\headsep}{0.5cm} 
+  }
+
+% ----------------------------------- Cheatsheet ---------------------------------------------- %
+\lstset{
+    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+}
+\begin{document}
+\pagestyle{footerstyle}
+\begin{flushleft}
+  \begin{adjustbox}{width=850pt}
+    \fontsize{40}{30}\selectfont\textbf{QGIS en R con qgisprocess :: CHEAT SHEET}
+  \end{adjustbox}
+\end{flushleft}
+
+\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=north east, yshift=-12pt, xshift=-12pt] at (current page.north east) {\includegraphics[width=0.12\textwidth]{qgisprocess.png}};
+\end{tikzpicture}
+
+\begin{multicols*}{3}
+\setlength{\columnsep}{400pt}
+\tikzset{
+  mybox/.style={
+    draw=gray,
+    fill=white,
+    line width=0.005pt,
+    rectangle,
+    rounded corners,
+    inner sep=10pt,
+    inner ysep=5pt
+  },
+  fancytitle/.style={
+    fill=mycolor,
+    text=white,
+    font=\bfseries
+  }
+}
+
+% Mission %
+\begin{minipage}{\linewidth}
+  \vspace{-5pt}
+   \textbf{\fontsize{44}{44}\selectfont \textbf{Misión}}\vspace{8pt}\\ 
+   El objetivo de qgisprocess es proporcionar una interfaz de R para los algoritmos de geoprocesamiento de QGIS, un popular programa de sistema de información geográfica (SIG) de código abierto. Este paquete es una reimplementación de la funcionalidad proporcionada por el paquete archivado \textbf{RQGIS} o la que parcialmente fue revivido en el paquete \textbf{RQGIS3}
+\end{minipage}
+
+% Features %
+\begin{minipage}{\linewidth}
+  \vspace{1pt}
+   \textbf{\fontsize{44}{44}\selectfont \textbf{Características}}\vspace{8pt}\\ 
+Este paquete facilita el uso de algoritmos de procesamiento nativos y algunos de GDAL, GRASS y muchos otros (como SAGA).
+\begin{center}
+\setlength{\arrayrulewidth}{0.001pt} 
+\arrayrulecolor{gray}
+\renewcommand{\arraystretch}{1.25} 
+\begin{tabular}{|c|c|}
+  \hline
+  \rowcolor{mycolor} 
+  \textcolor{white}{\textbf{Proveedor}} & \textcolor{white}{\textbf{Algoritmos}} \\
+  \hline
+  qgis &  50 + 242 ( c ++) + 1 (3D) \\
+  \hline
+  gdal & 56 \\
+  \hline
+  grass & 304 \\
+  \hline
+  third-party providers & x \\
+  \hline
+  Total & 653 + x \\
+  \hline
+\end{tabular}
+\end{center}  
+\end{minipage}
+
+\begin{lstlisting}[style=Rstyle]
+ # Mostrar un tibble con proveedores de processing
+ > qgis_providers( ) 
+ # Mostrar un tibble con algoritmos
+ > qgis_algorithms( ) 
+ # Buscar algoritmos con expresiones regulares
+ > qgis_search_algorithms(
+        algorithm = <x>,
+        provider = <y>,
+        group = <z> 
+        )    
+\end{lstlisting}
+
+% Installation %
+\begin{minipage}{\linewidth}
+\vspace{10pt}
+   \textbf{\fontsize{44}{44}\selectfont \textbf{Instalación}\vspace{5pt}} 
+    \begin{lstlisting}[style=Rstyle]
+ > install.packages('remotes')
+ > install_github('r-spatial/qgisprocess')
+ > library(qgisprocess)
+    \end{lstlisting}
+\end{minipage}
+
+
+\begin{tikzpicture}
+  \node[mybox,text width=11cm] (box) 
+  {\\
+Si es necesario, especifique la ruta a la instalación de QGIS antes de cargar qgisprocess:
+\begin{lstlisting}[breaklines=true,style=Rstyle]
+> options("qgisprocess.path" = "C:/Program Files/QGIS 3.30/bin/qgis_process-qgis.bat")
+\end{lstlisting}
+  };
+  \node[fancytitle, right=0pt,yshift=6pt] at (box.north west) {GNU/Linux, macOS, Windows};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+  \node[mybox,text width=11cm] (box) 
+  {\\
+  1.Instalación de docker.
+  
+  2.Descargar la imagen de docker llamado geocomputación.  
+\begin{lstlisting}[breaklines=true,style=Rstyle]
+> docker pull geocompr/geocompr:qgis-ext
+\end{lstlisting}
+
+ 3. Iniciar la imagen de gecomputación con docker.
+\begin{lstlisting}[breaklines=true,style=Rstyle]
+> docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw geocompr/geocompr:qgis-ext
+\end{lstlisting}
+ 
+  };
+  \node[fancytitle, right=0pt,yshift=6pt] at (box.north west) {Usando docker};
+\end{tikzpicture}
+
+
+% columa 2 %
+% Input %
+\begin{minipage}{\linewidth}
+  \vspace{-5pt}
+   \textbf{\fontsize{44}{44}\selectfont \textbf{Funciones de entrada}}\vspace{8pt}\\ 
+   El paquete ofrece nuevas funcionalidades de entrada para tener un flujo de trabajo más amigable en el entorno de R.
+\end{minipage}
+\begin{lstlisting}[style=Rstyle]
+ # Mostrar una descripción de ayuda de la función a usar
+ > qgis_show_help(algorithm ='native:creategrid')
+
+ # Mostrar todos los parámetros de la función
+ > qgis_get_argument_specs(algorithm = 'native:creategrid')
+\end{lstlisting}
+\begin{lstlisting}[style=Rstyle]
+ # Inicar la ejecucion del algoritmo
+ > qgis_run_algorithm( 
+     algorithm = 'native:creategrid',
+     TYPE = 4,
+     EXTENT = c('794599, 798208, 8931775,8935384'),
+     HSPACING = 1000 ,
+     VSPACING = 1000,
+     CRS = 'EPSG:32717',
+     OUTPUT = 'grid'
+       )
+
+ # Crear una función basada en un algoritmo específico
+ > grid_fun <- qgis_function('native:creategrid')
+ > grid_fun(
+    TYPE = 4,
+    EXTENT = c('794599,798208,8931775,8935384'),
+    HSPACING = 1000,
+    VSPACING = 1000,
+    CRS = 'EPSG:32717',
+    OUTPUT = 'grid'
+     )
+\end{lstlisting}
+
+% Output functions %
+\begin{minipage}{\linewidth}
+  \vspace{12pt}
+   \textbf{\fontsize{44}{44}\selectfont \textbf{Funciones de salida}}\vspace{8pt}\\ 
+qgisprocess nos brinda nuevas funcionalidades para la generación de archivos en formatos vectoriales, raster y otros. Además, permite cargar fácilmente a nuestro entorno de trabajo.
+\end{minipage}
+
+\begin{lstlisting}[style=Rstyle]
+ > qgis_extract_output(result_run_alg, 'OUTPUT')
+\end{lstlisting}
+\begin{lstlisting}[style=Rstyle]
+# Un vector de caracteres que indica la ubicación de un archivo temporal.
+ > qgis_tmp_base( )
+ > qgis_tmp_file( ".csv" )
+ > qgis_tmp_vector( )
+ > qgis_tmp_raster( )
+\end{lstlisting}
+
+\vspace{145pt}
+
+% Columna 3 %
+% Pipe %
+\begin{minipage}{\linewidth}
+\vspace{-5pt}
+\textbf{\fontsize{44}{44}\selectfont \textbf{Uso de Pipe}}\vspace{-13pt}
+\vspace{13pt}
+\begin{lstlisting}
+ qgisprocess proporciona una función
+ llamada qgis_run_algorithm_p() que
+ integra de mejor forma el uso de pipelines.
+\end{lstlisting}
+\end{minipage}
+\begin{lstlisting}[style=Rstyle]
+ # Cálculo de buffer
+ > library(sf)
+ > system.file(
+    'longlake/longlake_depth.gpkg',
+    package = 'qgisprocess'
+    ) |>
+  qgis_run_algorithm_p(
+    algorithm = 'native:buffer',
+    DISTANCE = 100
+    ) |> st_as_sf( ) |>
+    plot( ) 
+\end{lstlisting}
+
+% Workflow %
+\begin{minipage}{\linewidth}
+  \vspace{12pt}
+   \textbf{\fontsize{44}{44}\selectfont \textbf{Flujo de trabajo}}\vspace{8pt}\\ 
+\end{minipage}
+\begin{tikzpicture}
+  \node[mybox,text width=11.5cm] (box) 
+  {\\
+\begin{lstlisting}[breaklines=true,style=Rstyle]
+# Creación de un hexagrid de 400x400
+> library(sf)
+> grid_fun <- qgis_function('native:creategrid')
+> grid_fun(
+    TYPE = 4,
+    EXTENT = c('409967, 411658, 5083354, 5084777'),
+    HSPACING = 400,
+    VSPACING = 400,
+    CRS = 'EPSG:26920',
+    OUTPUT = 'grid'
+    ) |> st_as_sf() |> 
+   select(id) |>
+   plot()
+\end{lstlisting}
+  };
+\node[fancytitle, right=0pt, yshift=6pt] at (box.north west) {Vector data};
+\end{tikzpicture}
+\begin{tikzpicture}
+\node[mybox,text width=11.5cm] (box) 
+{
+\begin{lstlisting}[breaklines=true,style=Rstyle]
+ # Cálculo del TWI 
+ > library(stars)
+ > dem <- read_stars(
+    system.file(
+      'raster/nz_elev.tif',
+       package = 'spDataLarge')
+      )
+ > qgis_run_algorithm(
+    algorithm ='sagang:sagawetnessindex',
+    DEM = dem,
+    TPI = 'tpi.sdat') |> 
+    qgis_extract_output('TWI') |> 
+    st_as_stars() |> 
+    plot(col = cptcity::cpt(pal = 'ocal_blues'))
+\end{lstlisting}
+};
+\node[fancytitle, right=0pt,yshift=6pt] at (box.north west) {Raster data};
+\end{tikzpicture}
+\end{multicols*}
+\end{document}

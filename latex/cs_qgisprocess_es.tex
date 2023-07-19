@@ -49,7 +49,7 @@
     keywordstyle=\color{blue},
     stringstyle=\color{red},
     breaklines=true,
-    morekeywords={function,st,github,qgisprocess,sf,fun,run,qgis,tmp,raster,base,algorithms,p,argument,specs,providers,algorithm},
+    morekeywords={function,st,github,qgisprocess,sf,fun,run,qgis,tmp,raster,base,algorithms,p,argument,specs,providers,algorithm,terra,output,select},
     extendedchars=true
 }
 \definecolor{mycolor}{HTML}{589632}
@@ -69,7 +69,7 @@
 
 % ----------------------------------- Cheatsheet ---------------------------------------------- %
 \lstset{
-    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+    literate={á}{{\"a}}1 {é}{{\"e}}1 {í}{{\"i}}1 {ó}{{\"o}}1 {ú}{{\"u}}1
 }
 \begin{document}
 \pagestyle{footerstyle}
@@ -104,7 +104,7 @@
 
 % Mission %
 \begin{minipage}{\linewidth}
-  \vspace{-5pt}
+  \vspace{-10pt}
    \textbf{\fontsize{44}{44}\selectfont \textbf{Misión}}\vspace{8pt}\\ 
    El objetivo de qgisprocess es proporcionar una interfaz de R para los algoritmos de geoprocesamiento de QGIS, un popular programa de sistema de información geográfica (SIG) de código abierto. Este paquete es una reimplementación de la funcionalidad proporcionada por el paquete archivado \textbf{RQGIS} o la que parcialmente fue revivido en el paquete \textbf{RQGIS3}
 \end{minipage}
@@ -155,8 +155,8 @@ Este paquete facilita el uso de algoritmos de procesamiento nativos y algunos de
 \vspace{10pt}
    \textbf{\fontsize{44}{44}\selectfont \textbf{Instalación}\vspace{5pt}} 
     \begin{lstlisting}[style=Rstyle]
- > install.packages('remotes')
- > install_github('r-spatial/qgisprocess')
+ > install.packages("remotes")
+ > install_github("r-spatial/qgisprocess")
  > library(qgisprocess)
     \end{lstlisting}
 \end{minipage}
@@ -202,32 +202,32 @@ Si es necesario, especifique la ruta a la instalación de QGIS antes de cargar q
 \end{minipage}
 \begin{lstlisting}[style=Rstyle]
  # Mostrar una descripción de ayuda de la función a usar
- > qgis_show_help(algorithm ='native:creategrid')
+ > qgis_show_help(algorithm ="native:creategrid")
 
  # Mostrar todos los parámetros de la función
- > qgis_get_argument_specs(algorithm = 'native:creategrid')
+ > qgis_get_argument_specs(algorithm = "native:creategrid")
 \end{lstlisting}
 \begin{lstlisting}[style=Rstyle]
  # Inicar la ejecucion del algoritmo
  > qgis_run_algorithm( 
-     algorithm = 'native:creategrid',
+     algorithm = "native:creategrid",
      TYPE = 4,
-     EXTENT = c('794599, 798208, 8931775,8935384'),
+     EXTENT = c("794599, 798208, 8931775,8935384"),
      HSPACING = 1000 ,
      VSPACING = 1000,
-     CRS = 'EPSG:32717',
-     OUTPUT = 'grid'
+     CRS = "EPSG:32717",
+     OUTPUT = "grid"
        )
 
  # Crear una función basada en un algoritmo específico
- > grid_fun <- qgis_function('native:creategrid')
+ > grid_fun <- qgis_function("native:creategrid")
  > grid_fun(
     TYPE = 4,
-    EXTENT = c('794599,798208,8931775,8935384'),
+    EXTENT = c("794599,798208,8931775,8935384"),
     HSPACING = 1000,
     VSPACING = 1000,
-    CRS = 'EPSG:32717',
-    OUTPUT = 'grid'
+    CRS = "EPSG:32717",
+    OUTPUT = "grid"
      )
 \end{lstlisting}
 
@@ -239,7 +239,7 @@ qgisprocess nos brinda nuevas funcionalidades para la generación de archivos en
 \end{minipage}
 
 \begin{lstlisting}[style=Rstyle]
- > qgis_extract_output(result_run_alg, 'OUTPUT')
+ > qgis_extract_output(result_run_alg, "OUTPUT")
 \end{lstlisting}
 \begin{lstlisting}[style=Rstyle]
 # Un vector de caracteres que indica la ubicación de un archivo temporal.
@@ -267,11 +267,11 @@ qgisprocess nos brinda nuevas funcionalidades para la generación de archivos en
  # Cálculo de buffer
  > library(sf)
  > system.file(
-    'longlake/longlake_depth.gpkg',
-    package = 'qgisprocess'
+    "longlake/longlake_depth.gpkg",
+    package = "qgisprocess"
     ) |>
   qgis_run_algorithm_p(
-    algorithm = 'native:buffer',
+    algorithm = "native:buffer",
     DISTANCE = 100
     ) |> st_as_sf( ) |>
     plot( ) 
@@ -288,14 +288,14 @@ qgisprocess nos brinda nuevas funcionalidades para la generación de archivos en
 \begin{lstlisting}[breaklines=true,style=Rstyle]
 # Creación de un hexagrid de 400x400
 > library(sf)
-> grid_fun <- qgis_function('native:creategrid')
+> grid_fun <- qgis_function("native:creategrid")
 > grid_fun(
     TYPE = 4,
-    EXTENT = c('409967, 411658, 5083354, 5084777'),
+    EXTENT = c("409967, 411658, 5083354, 5084777"),
     HSPACING = 400,
     VSPACING = 400,
-    CRS = 'EPSG:26920',
-    OUTPUT = 'grid'
+    CRS = "EPSG:26920",
+    OUTPUT = "grid"
     ) |> st_as_sf() |> 
    select(id) |>
    plot()
@@ -311,16 +311,16 @@ qgisprocess nos brinda nuevas funcionalidades para la generación de archivos en
  > library(stars)
  > dem <- read_stars(
     system.file(
-      'raster/nz_elev.tif',
-       package = 'spDataLarge')
+      "raster/nz_elev.tif",
+       package = "spDataLarge")
       )
  > qgis_run_algorithm(
-    algorithm ='sagang:sagawetnessindex',
+    algorithm ="sagang:sagawetnessindex",
     DEM = dem,
-    TPI = 'tpi.sdat') |> 
-    qgis_extract_output('TWI') |> 
-    st_as_stars() |> 
-    plot(col = cptcity::cpt(pal = 'ocal_blues'))
+    TPI = "tpi.sdat") |> 
+    qgis_extract_output("TWI") |> 
+    qgis_as_terra() |> 
+    plot(col = cptcity::cpt(pal = "ocal_blues"))
 \end{lstlisting}
 };
 \node[fancytitle, right=0pt,yshift=6pt] at (box.north west) {Raster data};

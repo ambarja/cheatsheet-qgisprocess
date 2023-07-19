@@ -46,7 +46,7 @@
     keywordstyle=\color{blue},
     stringstyle=\color{red},
     breaklines=true,
-    morekeywords={function,st,github,qgisprocess,sf,fun,run,qgis,tmp,raster,base,algorithms,p,argument,specs,providers,algorithm}
+    morekeywords={function,st,github,qgisprocess,sf,fun,run,qgis,tmp,raster,base,algorithms,p,argument,specs,providers,algorithm,select,output,terra}
 }
 \definecolor{mycolor}{HTML}{589632}
 
@@ -97,7 +97,7 @@
 
 % Mission %
 \begin{minipage}{\linewidth}
-  \vspace{-5pt}
+  \vspace{-10pt}
    \textbf{\fontsize{44}{44}\selectfont \textbf{Mission}}\vspace{8pt}\\ 
    The goal of qgisprocess is to provide an R interface to the geoprocessing algorithms of QGIS, a popular and open source desktop geographic information system (GIS) program. This package is a re-implementation of the functionality provided by the archived \textbf{RQGIS} package, which was partially revived in the \textbf{RQGIS3} package.
 \end{minipage}
@@ -149,8 +149,8 @@
 \vspace{10pt}
    \textbf{\fontsize{20}{5}\selectfont \textbf{Installation}\vspace{5pt}} 
     \begin{lstlisting}[style=Rstyle]
- > install.packages('remotes')
- > install_github('r-spatial/qgisprocess')
+ > install.packages("remotes")
+ > install_github("r-spatial/qgisprocess")
  > library(qgisprocess)
     \end{lstlisting}
 \end{minipage}
@@ -197,32 +197,32 @@
 \end{minipage}
 \begin{lstlisting}[style=Rstyle]
  # Show a description of the function to use
- > qgis_show_help(algorithm ='native:creategrid')
+ > qgis_show_help(algorithm ="native:creategrid")
 
  # Show all the parameters of the function
- > qgis_get_argument_specs(algorithm = 'native:creategrid')
+ > qgis_get_argument_specs(algorithm = "native:creategrid")
 \end{lstlisting}
 \begin{lstlisting}[style=Rstyle]
  # Run the algorithms
  > qgis_run_algorithm( 
-     algorithm = 'native:creategrid',
+     algorithm = "native:creategrid",
      TYPE = 4,
-     EXTENT = c('794599, 798208, 8931775,8935384'),
+     EXTENT = c("794599, 798208, 8931775,8935384"),
      HSPACING = 1000 ,
      VSPACING = 1000,
-     CRS = 'EPSG:32717',
-     OUTPUT = 'grid'
+     CRS = "EPSG:32717",
+     OUTPUT = "grid"
        )
 
  # Create a function based on the algorithm to use 
- > grid_fun <- qgis_function('native:creategrid')
+ > grid_fun <- qgis_function("native:creategrid")
  > grid_fun(
     TYPE = 4,
-    EXTENT = c('794599,798208,8931775,8935384'),
+    EXTENT = c("794599,798208,8931775,8935384"),
     HSPACING = 1000,
     VSPACING = 1000,
-    CRS = 'EPSG:32717',
-    OUTPUT = 'grid'
+    CRS = "EPSG:32717",
+    OUTPUT = "grid"
      )
 \end{lstlisting}
 
@@ -234,7 +234,7 @@ qgisprocess give us new functionalities of output for vector, raster and other f
 \end{minipage}
 
 \begin{lstlisting}[style=Rstyle]
- > qgis_extract_output(result_run_alg, 'OUTPUT')
+ > qgis_extract_output(result_run_alg, "OUTPUT")
 \end{lstlisting}
 \begin{lstlisting}[style=Rstyle]
 # A character vector indicating the location of a  temporary file.
@@ -263,11 +263,11 @@ better in pipelines.
  # Buffer processing
  > library(sf)
  > system.file(
-    'longlake/longlake_depth.gpkg',
-    package = 'qgisprocess'
+    "longlake/longlake_depth.gpkg",
+    package = "qgisprocess"
     ) |>
   qgis_run_algorithm_p(
-    algorithm = 'native:buffer',
+    algorithm = "native:buffer",
     DISTANCE = 100
     ) |> st_as_sf() |>
     plot() 
@@ -285,14 +285,14 @@ better in pipelines.
 \begin{lstlisting}[breaklines=true,style=Rstyle]
 # Hexagrid of 400x400
 > library(sf)
-> grid_fun <- qgis_function('native:creategrid')
+> grid_fun <- qgis_function("native:creategrid")
 > grid_fun(
     TYPE = 4,
-    EXTENT = c('409967, 411658, 5083354, 5084777'),
+    EXTENT = c("409967, 411658, 5083354, 5084777"),
     HSPACING = 400,
     VSPACING = 400,
-    CRS = 'EPSG:26920',
-    OUTPUT = 'grid'
+    CRS = "EPSG:26920",
+    OUTPUT = "grid"
     ) |> 
     st_as_sf() |> 
     select(id) |>
@@ -309,16 +309,16 @@ better in pipelines.
  > library(stars)
  > dem <- read_stars(
     system.file(
-      'raster/nz_elev.tif',
-       package = 'spDataLarge')
+      "raster/nz_elev.tif",
+       package = "spDataLarge")
       )
  > qgis_run_algorithm(
-    algorithm ='sagang:sagawetnessindex',
+    algorithm ="sagang:sagawetnessindex",
     DEM = dem,
-    TPI = 'tpi.sdat') |> 
-    qgis_extract_output('TWI') |> 
-    st_as_stars() |> 
-    plot(col = cptcity::cpt(pal = 'ocal_blues'))
+    TPI = "tpi.sdat") |> 
+    qgis_extract_output("TWI") |> 
+    qgis_as_terra() |> 
+    plot(col = cptcity::cpt(pal = "ocal_blues"))
 \end{lstlisting}
 };
 \node[fancytitle, right=0pt,yshift=6pt] at (box.north west) {Raster data};

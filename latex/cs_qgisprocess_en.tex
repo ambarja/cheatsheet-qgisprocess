@@ -1,5 +1,5 @@
 \documentclass{article}
-\renewcommand{\normalsize}{\fontsize{12}{13}\selectfont} 
+\renewcommand{\normalsize}{\fontsize{12}{13}\selectfont}
 \usepackage[landscape]{geometry}
 \usepackage{url}
 \usepackage{multicol}
@@ -26,7 +26,7 @@
 \parskip2pt
 \newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
 
-% Setup the size of paper % 
+% Setup the size of paper %
 \geometry{
   paperwidth=850pt,
   paperheight=1100pt,
@@ -60,7 +60,7 @@
     \end{tikzpicture}
   }
   \renewcommand{\footrulewidth}{0pt}
-  \setlength{\headsep}{0.5cm} 
+  \setlength{\headsep}{0.5cm}
   }
 
 % ----------------------------------- Cheatsheet ---------------------------------------------- %
@@ -98,23 +98,23 @@
 % Mission %
 \begin{minipage}{\linewidth}
   \vspace{-10pt}
-   \textbf{\fontsize{44}{44}\selectfont \textbf{Mission}}\vspace{8pt}\\ 
+   \textbf{\fontsize{44}{44}\selectfont \textbf{Mission}}\vspace{8pt}\\
    The goal of qgisprocess is to provide an R interface to the geoprocessing algorithms of QGIS, a popular and open source desktop geographic information system (GIS) program. This package is a re-implementation of the functionality provided by the archived \textbf{RQGIS} package, which was partially revived in the \textbf{RQGIS3} package.
 \end{minipage}
 
 % Features %
 \begin{minipage}{\linewidth}
   \vspace{1pt}
-   \textbf{\fontsize{20}{5}\selectfont \textbf{Features}}\vspace{8pt}\\ 
+   \textbf{\fontsize{20}{5}\selectfont \textbf{Features}}\vspace{8pt}\\
   This package makes it easier to use native processing algorithms and some from GDAL, GRASS and many others (like SAGA).
 
 \begin{center}
-\setlength{\arrayrulewidth}{0.001pt} 
+\setlength{\arrayrulewidth}{0.001pt}
 \arrayrulecolor{gray}
-\renewcommand{\arraystretch}{1.25} 
+\renewcommand{\arraystretch}{1.25}
 \begin{tabular}{|c|c|}
   \hline
-  \rowcolor{mycolor} 
+  \rowcolor{mycolor}
   \textcolor{white}{\textbf{Providers}} & \textcolor{white}{\textbf{Algorithms}} \\
   \hline
   qgis &  50 + 242 ( c ++) + 1 (3D) \\
@@ -128,26 +128,26 @@
   Total counts & 653 + x \\
   \hline
 \end{tabular}
-\end{center}  
+\end{center}
 \end{minipage}
 
 \begin{lstlisting}[style=Rstyle]
  # Show a tibble with processing providers
- > qgis_providers( ) 
+ > qgis_providers( )
  # Show a tibble with algorithms
- > qgis_algorithms( ) 
+ > qgis_algorithms( )
  # Search algorithms using regular expressions
  > qgis_search_algorithms(
         algorithm = <x>,
         provider = <y>,
-        group = <z> 
-        )    
+        group = <z>
+        )
 \end{lstlisting}
 
 % Installation %
 \begin{minipage}{\linewidth}
 \vspace{10pt}
-   \textbf{\fontsize{20}{5}\selectfont \textbf{Installation}\vspace{5pt}} 
+   \textbf{\fontsize{20}{5}\selectfont \textbf{Installation}\vspace{5pt}}
     \begin{lstlisting}[style=Rstyle]
  > install.packages("remotes")
  > install_github("r-spatial/qgisprocess")
@@ -157,7 +157,7 @@
 
 
 \begin{tikzpicture}
-  \node[mybox,text width=11cm] (box) 
+  \node[mybox,text width=11cm] (box)
   {\\
   If needed, specify path to QGIS installation before
   loading qgisprocess:
@@ -169,11 +169,11 @@
 \end{tikzpicture}
 
 \begin{tikzpicture}
-  \node[mybox,text width=11cm] (box) 
+  \node[mybox,text width=11cm] (box)
   {\\
   1.Get started with the installation of docker in your machine.
-  
-  2.Download the image of geocomputation  
+
+  2.Download the image of geocomputation
 \begin{lstlisting}[breaklines=true,style=Rstyle]
 > docker pull geocompr/geocompr:qgis-ext
 \end{lstlisting}
@@ -182,7 +182,7 @@
 \begin{lstlisting}[breaklines=true,style=Rstyle]
 > docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw geocompr/geocompr:qgis-ext
 \end{lstlisting}
- 
+
   };
   \node[fancytitle, right=0pt,yshift=6pt] at (box.north west) {Using docker};
 \end{tikzpicture}
@@ -192,7 +192,7 @@
 % Input %
 \begin{minipage}{\linewidth}
   \vspace{-5pt}
-   \textbf{\fontsize{44}{44}\selectfont \textbf{Input functions}}\vspace{8pt}\\ 
+   \textbf{\fontsize{44}{44}\selectfont \textbf{Input functions}}\vspace{8pt}\\
    The package offers new functionalities of Input to have a workflow of an easy manner inside of R.
 \end{minipage}
 \begin{lstlisting}[style=Rstyle]
@@ -204,7 +204,7 @@
 \end{lstlisting}
 \begin{lstlisting}[style=Rstyle]
  # Run the algorithms
- > qgis_run_algorithm( 
+ > qgis_run_algorithm(
      algorithm = "native:creategrid",
      TYPE = 4,
      EXTENT = c("794599, 798208, 8931775,8935384"),
@@ -214,7 +214,7 @@
      OUTPUT = "grid"
        )
 
- # Create a function based on the algorithm to use 
+ # Create a function based on the algorithm to use
  > grid_fun <- qgis_function("native:creategrid")
  > grid_fun(
     TYPE = 4,
@@ -229,7 +229,7 @@
 % Output functions %
 \begin{minipage}{\linewidth}
   \vspace{12pt}
-   \textbf{\fontsize{20}{5}\selectfont \textbf{Output functions}}\vspace{8pt}\\ 
+   \textbf{\fontsize{20}{5}\selectfont \textbf{Output functions}}\vspace{8pt}\\
 qgisprocess give us new functionalities of output for vector, raster and other format file, and it is possible loads it  to our environment work.
 \end{minipage}
 
@@ -253,7 +253,7 @@ qgisprocess give us new functionalities of output for vector, raster and other f
 \textbf{\fontsize{44}{44}\selectfont \textbf{Pipe integration}}\vspace{-13pt}
 \vspace{13pt}
 \begin{lstlisting}
-qgisprocess also provides 
+qgisprocess also provides
 qgis_run_algorithm_p() that works
 better in pipelines.
 \end{lstlisting}
@@ -270,17 +270,17 @@ better in pipelines.
     algorithm = "native:buffer",
     DISTANCE = 100
     ) |> st_as_sf() |>
-    plot() 
+    plot()
 \end{lstlisting}
 
 % Workflow %
 \begin{minipage}{\linewidth}
   \vspace{12pt}
-   \textbf{\fontsize{44}{44}\selectfont \textbf{Workflow}}\vspace{8pt}\\ 
+   \textbf{\fontsize{44}{44}\selectfont \textbf{Workflow}}\vspace{8pt}\\
 \end{minipage}
 
 \begin{tikzpicture}
-  \node[mybox,text width=11.5cm] (box) 
+  \node[mybox,text width=11.5cm] (box)
   {\\
 \begin{lstlisting}[breaklines=true,style=Rstyle]
 # Hexagrid of 400x400
@@ -293,8 +293,8 @@ better in pipelines.
     VSPACING = 400,
     CRS = "EPSG:26920",
     OUTPUT = "grid"
-    ) |> 
-    st_as_sf() |> 
+    ) |>
+    st_as_sf() |>
     select(id) |>
     plot()
 \end{lstlisting}
@@ -302,7 +302,7 @@ better in pipelines.
 \node[fancytitle, right=0pt, yshift=6pt] at (box.north west) {Vector data};
 \end{tikzpicture}
 \begin{tikzpicture}
-\node[mybox,text width=11.5cm] (box) 
+\node[mybox,text width=11.5cm] (box)
 {
 \begin{lstlisting}[breaklines=true,style=Rstyle]
 # TWI processing
@@ -315,9 +315,9 @@ better in pipelines.
  > qgis_run_algorithm(
     algorithm ="sagang:sagawetnessindex",
     DEM = dem,
-    TPI = "tpi.sdat") |> 
-    qgis_extract_output("TWI") |> 
-    qgis_as_terra() |> 
+    TPI = "tpi.sdat") |>
+    qgis_extract_output("TWI") |>
+    qgis_as_terra() |>
     plot(col = cptcity::cpt(pal = "ocal_blues"))
 \end{lstlisting}
 };

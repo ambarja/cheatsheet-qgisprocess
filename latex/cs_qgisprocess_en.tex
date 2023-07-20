@@ -315,7 +315,7 @@ better in pipelines.
  > qgis_run_algorithm(
     algorithm ="sagang:sagawetnessindex",
     DEM = dem,
-    TPI = "tpi.sdat") |>
+    TWI = "twi.sdat") |>
     qgis_extract_output("TWI") |>
     qgis_as_terra() |>
     plot(col = cptcity::cpt(pal = "ocal_blues"))

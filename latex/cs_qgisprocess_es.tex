@@ -1,5 +1,5 @@
 \documentclass{article}
-\renewcommand{\normalsize}{\fontsize{12}{13}\selectfont} 
+\renewcommand{\normalsize}{\fontsize{12}{13}\selectfont}
 \usepackage[landscape]{geometry}
 \usepackage{url}
 \usepackage{multicol}
@@ -28,7 +28,7 @@
 \parskip2pt
 \newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
 
-% Setup the size of paper % 
+% Setup the size of paper %
 \geometry{
   paperwidth=850pt,
   paperheight=1100pt,
@@ -64,7 +64,7 @@
     \end{tikzpicture}
   }
   \renewcommand{\footrulewidth}{0pt}
-  \setlength{\headsep}{0.5cm} 
+  \setlength{\headsep}{0.5cm}
   }
 
 % ----------------------------------- Cheatsheet ---------------------------------------------- %
@@ -105,22 +105,22 @@
 % Mission %
 \begin{minipage}{\linewidth}
   \vspace{-10pt}
-   \textbf{\fontsize{44}{44}\selectfont \textbf{Misión}}\vspace{8pt}\\ 
+   \textbf{\fontsize{44}{44}\selectfont \textbf{Misión}}\vspace{8pt}\\
    El objetivo de qgisprocess es proporcionar una interfaz de R para los algoritmos de geoprocesamiento de QGIS, un popular programa de sistema de información geográfica (SIG) de código abierto. Este paquete es una reimplementación de la funcionalidad proporcionada por el paquete archivado \textbf{RQGIS} o la que parcialmente fue revivido en el paquete \textbf{RQGIS3}
 \end{minipage}
 
 % Features %
 \begin{minipage}{\linewidth}
   \vspace{1pt}
-   \textbf{\fontsize{44}{44}\selectfont \textbf{Características}}\vspace{8pt}\\ 
+   \textbf{\fontsize{44}{44}\selectfont \textbf{Características}}\vspace{8pt}\\
 Este paquete facilita el uso de algoritmos de procesamiento nativos y algunos de GDAL, GRASS y muchos otros (como SAGA).
 \begin{center}
-\setlength{\arrayrulewidth}{0.001pt} 
+\setlength{\arrayrulewidth}{0.001pt}
 \arrayrulecolor{gray}
-\renewcommand{\arraystretch}{1.25} 
+\renewcommand{\arraystretch}{1.25}
 \begin{tabular}{|c|c|}
   \hline
-  \rowcolor{mycolor} 
+  \rowcolor{mycolor}
   \textcolor{white}{\textbf{Proveedor}} & \textcolor{white}{\textbf{Algoritmos}} \\
   \hline
   qgis &  50 + 242 ( c ++) + 1 (3D) \\
@@ -134,26 +134,26 @@ Este paquete facilita el uso de algoritmos de procesamiento nativos y algunos de
   Total & 653 + x \\
   \hline
 \end{tabular}
-\end{center}  
+\end{center}
 \end{minipage}
 
 \begin{lstlisting}[style=Rstyle]
  # Mostrar un tibble con proveedores de processing
- > qgis_providers( ) 
+ > qgis_providers( )
  # Mostrar un tibble con algoritmos
- > qgis_algorithms( ) 
+ > qgis_algorithms( )
  # Buscar algoritmos con expresiones regulares
  > qgis_search_algorithms(
         algorithm = <x>,
         provider = <y>,
-        group = <z> 
-        )    
+        group = <z>
+        )
 \end{lstlisting}
 
 % Installation %
 \begin{minipage}{\linewidth}
 \vspace{10pt}
-   \textbf{\fontsize{44}{44}\selectfont \textbf{Instalación}\vspace{5pt}} 
+   \textbf{\fontsize{44}{44}\selectfont \textbf{Instalación}\vspace{5pt}}
     \begin{lstlisting}[style=Rstyle]
  > install.packages("remotes")
  > install_github("r-spatial/qgisprocess")
@@ -163,7 +163,7 @@ Este paquete facilita el uso de algoritmos de procesamiento nativos y algunos de
 
 
 \begin{tikzpicture}
-  \node[mybox,text width=11cm] (box) 
+  \node[mybox,text width=11cm] (box)
   {\\
 Si es necesario, especifique la ruta a la instalación de QGIS antes de cargar qgisprocess:
 \begin{lstlisting}[breaklines=true,style=Rstyle]
@@ -174,11 +174,11 @@ Si es necesario, especifique la ruta a la instalación de QGIS antes de cargar q
 \end{tikzpicture}
 
 \begin{tikzpicture}
-  \node[mybox,text width=11cm] (box) 
+  \node[mybox,text width=11cm] (box)
   {\\
   1.Instalación de docker.
-  
-  2.Descargar la imagen de docker llamado geocomputación.  
+
+  2.Descargar la imagen de docker llamado geocomputación.
 \begin{lstlisting}[breaklines=true,style=Rstyle]
 > docker pull geocompr/geocompr:qgis-ext
 \end{lstlisting}
@@ -187,7 +187,7 @@ Si es necesario, especifique la ruta a la instalación de QGIS antes de cargar q
 \begin{lstlisting}[breaklines=true,style=Rstyle]
 > docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw geocompr/geocompr:qgis-ext
 \end{lstlisting}
- 
+
   };
   \node[fancytitle, right=0pt,yshift=6pt] at (box.north west) {Usando docker};
 \end{tikzpicture}
@@ -197,7 +197,7 @@ Si es necesario, especifique la ruta a la instalación de QGIS antes de cargar q
 % Input %
 \begin{minipage}{\linewidth}
   \vspace{-5pt}
-   \textbf{\fontsize{44}{44}\selectfont \textbf{Funciones de entrada}}\vspace{8pt}\\ 
+   \textbf{\fontsize{44}{44}\selectfont \textbf{Funciones de entrada}}\vspace{8pt}\\
    El paquete ofrece nuevas funcionalidades de entrada para tener un flujo de trabajo más amigable en el entorno de R.
 \end{minipage}
 \begin{lstlisting}[style=Rstyle]
@@ -209,7 +209,7 @@ Si es necesario, especifique la ruta a la instalación de QGIS antes de cargar q
 \end{lstlisting}
 \begin{lstlisting}[style=Rstyle]
  # Inicar la ejecucion del algoritmo
- > qgis_run_algorithm( 
+ > qgis_run_algorithm(
      algorithm = "native:creategrid",
      TYPE = 4,
      EXTENT = c("794599, 798208, 8931775,8935384"),
@@ -234,7 +234,7 @@ Si es necesario, especifique la ruta a la instalación de QGIS antes de cargar q
 % Output functions %
 \begin{minipage}{\linewidth}
   \vspace{12pt}
-   \textbf{\fontsize{44}{44}\selectfont \textbf{Funciones de salida}}\vspace{8pt}\\ 
+   \textbf{\fontsize{44}{44}\selectfont \textbf{Funciones de salida}}\vspace{8pt}\\
 qgisprocess nos brinda nuevas funcionalidades para la generación de archivos en formatos vectoriales, raster y otros. Además, permite cargar fácilmente a nuestro entorno de trabajo.
 \end{minipage}
 
@@ -274,16 +274,16 @@ qgisprocess nos brinda nuevas funcionalidades para la generación de archivos en
     algorithm = "native:buffer",
     DISTANCE = 100
     ) |> st_as_sf( ) |>
-    plot( ) 
+    plot( )
 \end{lstlisting}
 
 % Workflow %
 \begin{minipage}{\linewidth}
   \vspace{12pt}
-   \textbf{\fontsize{44}{44}\selectfont \textbf{Flujo de trabajo}}\vspace{8pt}\\ 
+   \textbf{\fontsize{44}{44}\selectfont \textbf{Flujo de trabajo}}\vspace{8pt}\\
 \end{minipage}
 \begin{tikzpicture}
-  \node[mybox,text width=11.5cm] (box) 
+  \node[mybox,text width=11.5cm] (box)
   {\\
 \begin{lstlisting}[breaklines=true,style=Rstyle]
 # Creación de un hexagrid de 400x400
@@ -296,7 +296,7 @@ qgisprocess nos brinda nuevas funcionalidades para la generación de archivos en
     VSPACING = 400,
     CRS = "EPSG:26920",
     OUTPUT = "grid"
-    ) |> st_as_sf() |> 
+    ) |> st_as_sf() |>
    select(id) |>
    plot()
 \end{lstlisting}
@@ -304,10 +304,10 @@ qgisprocess nos brinda nuevas funcionalidades para la generación de archivos en
 \node[fancytitle, right=0pt, yshift=6pt] at (box.north west) {Vector data};
 \end{tikzpicture}
 \begin{tikzpicture}
-\node[mybox,text width=11.5cm] (box) 
+\node[mybox,text width=11.5cm] (box)
 {
 \begin{lstlisting}[breaklines=true,style=Rstyle]
- # Cálculo del TWI 
+ # Cálculo del TWI
  > library(stars)
  > dem <- read_stars(
     system.file(
@@ -317,9 +317,9 @@ qgisprocess nos brinda nuevas funcionalidades para la generación de archivos en
  > qgis_run_algorithm(
     algorithm ="sagang:sagawetnessindex",
     DEM = dem,
-    TPI = "tpi.sdat") |> 
-    qgis_extract_output("TWI") |> 
-    qgis_as_terra() |> 
+    TWI = "twi.sdat") |>
+    qgis_extract_output("TWI") |>
+    qgis_as_terra() |>
     plot(col = cptcity::cpt(pal = "ocal_blues"))
 \end{lstlisting}
 };
